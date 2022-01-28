@@ -1,4 +1,4 @@
-### ragnaroks/aria2-1.36.0:windows-10.0.19041.1415-amd64
+### ragnaroks/aria2-1.36.0:10.0.19041.1415-amd64
 > 使用前必读  
 > 由于 [WCOW 的 BUG](https://www.ragnaroks.site/posts/45/)，使用此镜像需要手动处理 volume  
 
@@ -11,7 +11,7 @@
 - 执行 `docker volume create aria2-config` 创建数据卷
 - （可选）执行 `docker volume create aria2-download` 创建数据卷
 - 在 aria2-config 数据卷中放入配置文件 aria2c.conf
-- 执行 `docker run --isolation process --detach --name aria2 --publish 6800:6800 --volume aria2-download:c:\app\download --volume aria2-config:c:\app\config ragnaroks/aria2-1.36.0:windows-10.0.19041.1415-amd64` 正式部署
+- 执行 `docker run --isolation process --detach --name aria2 --publish 6800:6800 --volume aria2-download:c:\app\download --volume aria2-config:c:\app\config ragnaroks/aria2-1.36.0:10.0.19041.1415-amd64` 正式部署
 
 ### 默认 c:\app\config\aria2.conf
 ```ini

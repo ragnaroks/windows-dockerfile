@@ -1,4 +1,4 @@
-### ragnaroks/v2ray-4.44.0:windows-10.0.19041.1415-amd64
+### ragnaroks/v2ray-4.44.0:10.0.19041.1415-amd64
 > 使用前必读  
 > 由于 [WCOW 的 BUG](https://www.ragnaroks.site/posts/45/)，使用此镜像需要手动处理 volume  
 
@@ -9,7 +9,7 @@
 ### 部署步骤
 - 执行 `docker volume create v2ray-config` 创建数据卷
 - 在 v2ray-config 数据卷中放入[多文件配置](https://www.v2fly.org/config/multiple_config.html)即可
-- 执行 `docker run --isolation process --detach --name v2ray-4.44.0 --publish 1080:1080 --publish 3128:3128 --volume v2ray-config:c:\app\config:ro ragnaroks/v2ray-4.44.0:windows-10.0.19041.1415-amd64` 部署使用
+- 执行 `docker run --isolation process --detach --name v2ray-4.44.0 --publish 1080:1080 --publish 3128:3128 --volume v2ray-config:c:\app\config:ro ragnaroks/v2ray-4.44.0:10.0.19041.1415-amd64` 部署使用
 
 ### 默认 c:\app\config\01_log.json
 ```json
