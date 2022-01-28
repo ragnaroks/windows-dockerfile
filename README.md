@@ -1,4 +1,2 @@
-# windows-image-19044-dockerfile
-|kernel|version|title|
-|-|-|-|
-|19044|2009|21H1|
+# windows 容器镜像列表
+进入各个文件夹查看详细
