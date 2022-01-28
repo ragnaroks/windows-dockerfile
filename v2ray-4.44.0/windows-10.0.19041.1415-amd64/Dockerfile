@@ -5,7 +5,7 @@
 #PRE delete app\\wv2ray.exe
 
 FROM mcr.microsoft.com/windows/nanoserver:10.0.19041.1415-amd64
-LABEL windows-kernel=10.0.19041.1415-amd64 v2ray-version=4.44.0
+LABEL windows-version=10.0.19041.1415-amd64 v2ray-version=4.44.0
 COPY app C:\\app
 USER ContainerUser
 ENV V2RAY_CONF_GEOLOADER=memconservative
