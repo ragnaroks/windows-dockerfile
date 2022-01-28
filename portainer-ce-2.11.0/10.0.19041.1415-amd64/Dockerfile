@@ -1,5 +1,5 @@
 #PRE pull portainer/portainer-ce:2.11.0
-#PRE mkdir app
+#PRE create-dir app
 #PRE copy portainer/portainer-ce:2.11.0\\.\\HardDisk1\\public app
 #PRE copy portainer/portainer-ce:2.11.0\\.\\HardDisk1\\storybook app
 #PRE copy portainer/portainer-ce:2.11.0\\.\\HardDisk1\\*.exe app
