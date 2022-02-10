@@ -9,8 +9,8 @@
 #PRE create-file app\\config\\mysqld.ini
 #PRE create-dir app\\data
 
-FROM mcr.microsoft.com/windows/nanoserver:10.0.17763.2458-amd64
-LABEL windows-version=10.0.17763.2458-amd64 mysql-version=5.7.36
+FROM mcr.microsoft.com/windows/nanoserver:10.0.19041.1415-amd64
+LABEL mysql-version=5.7.36
 COPY app C:\\app
 USER ContainerUser
 WORKDIR C:\\app
