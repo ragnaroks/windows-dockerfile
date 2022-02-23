@@ -29,7 +29,7 @@ max-allowed-packet=16M
 
 [mysqld]
 #skip-host-cache
-#skip-name-resolve
+skip-name-resolve
 port=3306
 basedir=c:\app
 datadir=c:\app\data
