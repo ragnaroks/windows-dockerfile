@@ -10,7 +10,7 @@
 - 执行 `docker volume create mysql-config` 创建数据卷
 - 执行 `docker volume create mysql-data` 创建数据卷
 - 在 mysql-config 数据卷中放入配置文件 mysqld.ini
-- 执行 `docker run --isolation process --name mysql-5.7.36-temp --detach --publish 6800:6800 --volume mysql-config:c:\app\config:ro --volume mysql-data:c:\app\data ragnaroks/windows-10.0.17763.2458-amd64:mysql-5.7.36` 创建一个初始化专用容器（此时运行的是 cmd.exe）
+- 执行 `docker run --isolation process --interactive --tty --name mysql-5.7.36-temp --publish 3306:3306 --volume mysql-config:c:\app\config:ro --volume mysql-data:c:\app\data ragnaroks/windows-10.0.19041.1415-amd64:mysql-5.7.36` 创建一个初始化专用容器（此时运行的是 cmd.exe）
 - 附加进容器后执行 `C:\app\bin\mysqld.exe --initialize-insecure` 初始化数据库
 - 附加进容器后执行 `C:\app\bin\mysqld.exe` 启动服务
 - （可选）附加进容器后执行 `C:\app\bin\mysql.exe -u root` 进入本机管理员会话
@@ -18,7 +18,7 @@
   - 执行 `mysql> GRANT ALL ON *.* TO 'root'@'%';` 给此用户授权
   - 执行 `mysql> FLUSH PRIVILEGES;` 刷新权限
 - 测试容器运行正常后，停止并移除此容器，**注意不要移除数据卷**
-- 执行 `docker run --isolation process --name mysql-5.7.36 --detach --publish 6800:6800 --volume mysql-config:c:\app\config:ro --volume mysql-data:c:\app\data ragnaroks/windows-10.0.17763.2458-amd64:mysql-5.7.36 c:\app\bin\mysqld.exe` 正式部署
+- 执行 `docker run --isolation process --detach --name mysql-5.7.36 --publish 3306:3306 --volume mysql-config:c:\app\config:ro --volume mysql-data:c:\app\data ragnaroks/windows-10.0.19041.1415-amd64:mysql-5.7.36 c:\app\bin\mysqld.exe` 正式部署
 
 ### 默认 c:\app\my.ini
 ```ini
