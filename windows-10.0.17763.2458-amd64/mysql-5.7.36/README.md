@@ -16,7 +16,8 @@
 - （可选）附加进容器后执行 `C:\app\bin\mysql.exe -u root` 进入本机管理员会话
   - 执行 `mysql> FLUSH PRIVILEGES;` 刷新权限
   - 执行 `mysql> CREATE USER 'root'@'%' IDENTIFIED BY 'root';` 创建任意来源的用户，用户名和密码都是 **root**
-  - 执行 `mysql> GRANT ALL ON *.* TO 'root'@'%';` 给此用户授权
+  - 执行 `mysql> GRANT ALL ON *.* TO 'root'@'%';` 给此用户授权（常规）
+  - 执行 `mysql> UPDATE mysql.user SET Grant_Priv='Y' WHERE User='root' AND Host='%';` 给此用户授权（授予**授权**权限）
   - 执行 `mysql> FLUSH PRIVILEGES;` 再次刷新权限
 - 测试容器运行正常后，停止并移除此容器，**注意不要移除数据卷**
 - 执行 `docker run --isolation process --detach --name mysql-5.7.36 --publish 3306:3306 --volume mysql-config:c:\app\config:ro --volume mysql-data:c:\app\data --entrypoint c:\app\bin\mysqld.exe --log-driver json-file --log-opt max-size=32m --log-opt max-file=7 ragnaroks/windows-10.0.17763.2458-amd64:mysql-5.7.36 --verbose` 正式部署
