@@ -1,0 +1,15 @@
+{
+    "outbounds": [
+        {
+            "tag": "out-direct",
+            "protocol": "freedom",
+            "settings": {
+                "domainStrategy": "AsIs"
+            }
+        },
+        {
+            "tag": "out-block",
+            "protocol": "blackhole"
+        }
+    ]
+}
