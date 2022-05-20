@@ -1,6 +1,6 @@
-#PRE download https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.36-winx64.zip
-#PRE unarchive mysql-5.7.36-winx64.zip app
-#PRE delete-file mysql-5.7.36-winx64.zip
+#PRE download https://cdn.mysql.com/Downloads/MySQL-5.7/mysql-5.7.38-winx64.zip
+#PRE unarchive mysql-5.7.38-winx64.zip app
+#PRE delete-file mysql-5.7.38-winx64.zip
 #PRE delete-dir app\\include
 #PRE delete-dir app\\lib
 #PRE delete-file app\\bin\\mysqld.pdb
@@ -10,10 +10,10 @@
 #PRE create-dir app\\data
 
 FROM mcr.microsoft.com/windows/nanoserver:10.0.19041.1415-amd64
-LABEL mysql-version=5.7.36
-COPY app C:\\app
+LABEL mysql-version=5.7.38
+COPY app c:\\app
 USER ContainerUser
-WORKDIR C:\\app
-#VOLUME C:\\app\\data C:\\app\\config
+WORKDIR c:\\app
+VOLUME c:\\app\\data c:\\app\\config
 EXPOSE 3306
 ENTRYPOINT ["cmd.exe"]

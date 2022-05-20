@@ -1,18 +1,18 @@
-### ragnaroks/windows-10.0.19041.1415-amd64:mysql-5.7.37
+### ragnaroks/windows-10.0.19041.1415-amd64:mysql-5.7.38
 > 使用前必读  
 > 由于 [WCOW 的 BUG](https://www.ragnaroks.site/posts/45/)，使用此镜像需要手动处理 volume  
 
 ### 提醒
-- 配置文件夹为 `C:\app\config`，未声明 volume
-- 数据文件夹为 `C:\app\data`，未声明 volume
+- 配置文件夹为 `c:\app\config`，已声明 volume，**内容为空，需要自行放入配置文件**
+- 数据文件夹为 `c:\app\data`，未声明 volume，**内容为空**
 
 ### 部署步骤
 - 执行 `docker volume create mysql-config` 创建数据卷
 - 执行 `docker volume create mysql-data` 创建数据卷
 - 在 mysql-config 数据卷中放入配置文件 mysqld.ini
-- 执行 `docker run --isolation process --interactive --tty --name mysql-5.7.37-temp --publish 3306:3306 --volume mysql-config:c:\app\config:ro --volume mysql-data:c:\app\data ragnaroks/windows-10.0.19041.1415-amd64:mysql-5.7.37` 创建一个初始化专用容器（此时运行的是 cmd.exe）
-- 附加进容器后执行 `C:\app\bin\mysqld.exe --initialize-insecure --log-error-verbosity` 初始化数据库
-- 附加进容器后执行 `C:\app\bin\mysqld.exe --skip-grant-tables --log-error-verbosity` 启动**不安全**服务
+- 执行 `docker run --isolation process --interactive --tty --name mysql-5.7.38-temp --publish 3306:3306 --volume mysql-config:c:\app\config:ro --volume mysql-data:c:\app\data ragnaroks/windows-10.0.19041.1415-amd64:mysql-5.7.38` 创建一个初始化专用容器（此时运行的是 cmd.exe）
+- 附加进容器后执行 `C:\app\bin\mysqld.exe --initialize-insecure --log-error-verbosity 3` 初始化数据库
+- 附加进容器后执行 `C:\app\bin\mysqld.exe --skip-grant-tables --log-error-verbosity 3` 启动**不安全**服务
 - （可选）附加进容器后执行 `C:\app\bin\mysql.exe -u root` 进入本机管理员会话
   - 执行 `mysql> FLUSH PRIVILEGES;` 刷新权限
   - 执行 `mysql> CREATE USER 'root'@'%' IDENTIFIED BY 'root';` 创建任意来源的用户，用户名和密码都是 **root**
@@ -20,7 +20,7 @@
   - 执行 `mysql> UPDATE mysql.user SET Grant_Priv='Y' WHERE User='root' AND Host='%';` 给此用户授权（授予**授权**权限）
   - 执行 `mysql> FLUSH PRIVILEGES;` 再次刷新权限
 - 测试容器运行正常后，停止并移除此容器，**注意不要移除数据卷**
-- 执行 `docker run --isolation process --detach --name mysql-5.7.37 --publish 3306:3306 --volume mysql-config:c:\app\config:ro --volume mysql-data:c:\app\data --entrypoint c:\app\bin\mysqld.exe --log-driver json-file --log-opt max-size=32m --log-opt max-file=7 ragnaroks/windows-10.0.19041.1415-amd64:mysql-5.7.37 --log-error-verbosity` 正式部署
+- 执行 `docker run --isolation process --detach --name mysql-5.7.38 --publish 3306:3306 --volume mysql-config:c:\app\config:ro --volume mysql-data:c:\app\data --entrypoint c:\app\bin\mysqld.exe --log-driver json-file --log-opt max-size=32m --log-opt max-file=7 ragnaroks/windows-10.0.19041.1415-amd64:mysql-5.7.38 --log-error-verbosity 2` 正式部署
 
 ### 默认 c:\app\my.ini
 ```ini
