@@ -1,0 +1,17 @@
+{
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": [
+            {
+                "type": "field",
+                "ip": ["geoip:private"],
+                "outboundTag": "out-block"
+            },
+            {
+                "type": "field",
+                "inboundTag": ["in-proxy-socks5","in-proxy-http"],
+                "outboundTag": "out-direct"
+            }
+        ]
+    }
+}

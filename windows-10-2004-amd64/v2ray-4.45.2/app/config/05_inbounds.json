@@ -1,0 +1,32 @@
+{
+    "inbounds": [
+        {
+            "tag": "in-proxy-http",
+            "protocol": "http",
+            "listen": "0.0.0.0",
+            "port": 3128,
+            "settings": {
+                "timeout": 60,
+                "allowTransparent": false,
+                "userLevel": 0
+            },
+            "sniffing": {
+                "enabled": false,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
+            }
+        },
+        {
+            "tag": "in-proxy-socks5",
+            "protocol": "socks",
+            "listen": "0.0.0.0",
+            "port": 1080,
+            "settings": {
+                "auth": "noauth",
+                "udp": true
+            }
+        }
+    ]
+}
